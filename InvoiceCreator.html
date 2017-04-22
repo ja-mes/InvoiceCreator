@@ -50,11 +50,18 @@
                     $("#stockDes").text(stock);
                     $("#vinDes").text(vin);
 
+                    var row = $(".itemDes").first();
+                    $(".itemDes").first().remove();
+
                     $(".itemRow").each(function(i, e) {
                         var des = $(this).find("input").first().val();
                         var price = $(this).find("input").eq(1).val();
 
-
+                        if (des.trim() && price.trim()) {
+                            var newRow = row.clone().appendTo($("#itemPrint"))
+                            newRow.find('.des').text(des);
+                            newRow.find('.price').text(price);
+                        }
                     });
 
                     main.hide();
@@ -217,10 +224,10 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Oil Change</td>
-                            <td>$25.00</td>
+                    <tbody id="itemPrint">
+                        <tr class="itemDes">
+                            <td class="des">Oil Change</td>
+                            <td class="price">$25.00</td>
                         </tr>
                     </tbody>
                 </table>
