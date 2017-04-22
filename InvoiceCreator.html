@@ -49,6 +49,13 @@
                     $("#stockDes").text(stock);
                     $("#vinDes").text(vin);
 
+                    $(".itemRow").each(function(i, e) {
+                        var des = $(this).find("input").first().val();
+                        var price = $(this).find("input").eq(1).val();
+
+                        console.log(des, price);
+                    });
+
                     main.hide();
                     print.show();
 
