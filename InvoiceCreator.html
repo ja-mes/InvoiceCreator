@@ -57,7 +57,7 @@
                         var des = $(this).find("input").first().val();
                         var price = $(this).find("input").eq(1).val();
 
-                        if (des.trim() && price.trim()) {
+                        if (des.trim() || price.trim()) {
                             var newRow = row.clone().appendTo($("#itemPrint"))
                             newRow.find('.des').text(des);
                             newRow.find('.price').text(price);
