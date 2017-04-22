@@ -1,0 +1,208 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+        <style>
+            .container {
+                margin-top: 50px;
+            }
+
+            header {
+                margin-bottom: 50px;
+            }
+
+            .center {
+                text-align: center;
+            }
+
+            .right {
+                text-align: right;
+            }
+        </style>
+
+        <script>
+            $(function() {
+                var main = $("#main");
+                var print = $("#print");
+
+                print.hide();
+
+                addItems(2);
+
+                $("#printBtn").click(function(e) {
+                    e.preventDefault();
+
+                    var vin = $("#vin").val();
+                    var stock = $("#stock").val();
+
+                    var year = $("#year").val();
+                    var make = $("#make").val();
+                    var model = $("#model").val();
+
+                    $("#vehicleDes").text(`${year} ${make} ${model}`);
+                    $("#stockDes").text(stock);
+                    $("#vinDes").text(vin);
+
+                    main.hide();
+                    print.show();
+
+                    return false;
+                });
+
+                $("#addItem").click(function(e) {
+                    e.preventDefault()
+
+                    addItems(1);
+                });
+
+                function addItems(num) {
+                    var row = $('.itemRow').first();
+                    for (var i = 0; i < num; i++) {
+                        debugger
+                        row.clone().appendTo($("#items")).css({"margin-top": "15px"});
+                    }
+                }
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="main">
+                <header>
+                    <h1 class="display-4">Invoice Creator</h1>
+                </header>
+
+                <form>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label>VIN #</label>
+                            <input type="text" class="form-control" id="vin"/>
+                        </div>
+
+                        <div class="col">
+                            <label>Stock #</label>
+                            <input type="text" class="form-control" id="stock"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col">
+                            <label>Year</label>
+                            <input type="text" class="form-control" id="year"/>
+                        </div>
+
+                        <div class="col">
+                            <label>Make</label>
+                            <input type="text" class="form-control" id="make"/>
+                        </div>
+
+                        <div class="col">
+                            <label>Model</label>
+                            <input type="text" class="form-control" id="model"/>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 50px; margin-bottom: 20px;">Items</h3>
+
+                    <div class="form-group" id="items">
+                        <div class="row">
+                            <div class="col-8">
+                                <label for="">Description</label>
+                            </div>
+
+                            <div class="col">
+                                <label for="">Price</label>
+                            </div>
+                        </div> 
+
+                        <div class="row itemRow">
+                            <div class="col-8">
+                                <input type="text" class="form-control" />
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="btn btn-secondary" id="addItem"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button class="btn btn-secondary" id="removeItem"><i class="fa fa-minus" aria-hidden="true"></i></button>
+
+                    <div class="right" style="margin-top: 50px;">
+                        <button class="btn btn-primary" id="printBtn">Print Invoice</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <!-- MARK: Print Page-->
+            <div id="print">
+                <h5 class="center">Browns Kar Mart Purchasing</h5>
+
+                <p class="center">
+                    810 Rose Rd. <br>
+                    Albertville, AL 35950
+                </p>
+
+                <div class="row">
+                    <div class="col">
+                        <h4>INVOICE</h4>
+                    </div>
+
+                    <div class="col right">
+                        <p style="margin-bottom: 0; margin-top: 10px;"><b>Invoice Date:</b> 08/01/17</p>
+                    </div>
+                </div>
+                <hr/>
+
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Browns Kar Mart</b> <br>
+                            8255 US Hwy 431 <br> Albertville, AL 35950
+                        </p>
+                    </div>
+
+                    <div class="col right">
+                        <p id="vehicleDes">2014 Chevrolet Equinox</p>
+                        <p><b>Stock #:</b> <span id="stockDes">823</span></b></p>
+                        <p><b>VIN #:</b> <span id="vinDes">2342342kk234ju3</span></b></p>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Oil Change</td>
+                            <td>$25.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="right" style="margin-top: 70px;">
+                    <h5>TOTAL</h5>
+                    <p>$125.00</p>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
