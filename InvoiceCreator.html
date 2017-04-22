@@ -38,6 +38,8 @@
                 $("#printBtn").click(function(e) {
                     e.preventDefault();
 
+                    var total = 0.0;
+
                     var vin = $("#vin").val();
                     var stock = $("#stock").val();
 
@@ -61,8 +63,13 @@
                             var newRow = row.clone().appendTo($("#itemPrint"))
                             newRow.find('.des').text(des);
                             newRow.find('.price').text(price);
+
+                            total += parseFloat(price);
                         }
                     });
+
+                    var paddedTotal = total.toFixed(2);
+                    $("#total").text(`$${paddedTotal}`);
 
                     main.hide();
                     print.show();
@@ -234,7 +241,7 @@
 
                 <div class="right" style="margin-top: 70px;">
                     <h5>TOTAL</h5>
-                    <p>$125.00</p>
+                    <p id="total">$125.00</p>
                 </div>
             </div>
         </div>
