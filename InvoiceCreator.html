@@ -61,11 +61,23 @@
                     addItems(1);
                 });
 
+                $("#removeItem").click(function(e) {
+                    e.preventDefault()
+
+                    removeItem();
+                });
+
                 function addItems(num) {
                     var row = $('.itemRow').first();
                     for (var i = 0; i < num; i++) {
-                        row.clone().appendTo($("#items")).css({"margin-top": "15px"});
+                        var newRow = row.clone().appendTo($("#items")).css({"margin-top": "15px"});
+
+                        newRow.find("input").val("");
                     }
+                }
+
+                function removeItem() {
+                    $(".itemRow").last().remove()
                 }
             });
         </script>
@@ -128,7 +140,7 @@
                             <div class="col">
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" />
+                                    <input type="number" class="form-control" />
                                 </div>
                             </div>
                         </div>
