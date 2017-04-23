@@ -24,6 +24,12 @@
             .right {
                 text-align: right;
             }
+
+            @media print {    
+                .no-print, .no-print * {
+                    display: none !important;
+                }
+            }
         </style>
 
         <script>
@@ -53,7 +59,7 @@
                     $("#vinDes").text(vin);
 
                     var row = $(".itemDes").first();
-                    $(".itemDes").first().remove();
+                    $("#itemPrint").empty();
 
                     $(".itemRow").each(function(i, e) {
                         var des = $(this).find("input").first().val();
@@ -83,6 +89,8 @@
 
                     main.hide();
                     print.show();
+
+                    window.print();                    
                 });
 
                 $("#addItem").click(function(e) {
@@ -95,6 +103,13 @@
                     e.preventDefault()
 
                     removeItem();
+                });
+
+                $("#back").click(function(e) {
+                    e.preventDefault();
+
+                    main.show()
+                    print.hide();
                 });
 
                 function addItems(num) {
@@ -202,6 +217,8 @@
 
             <!-- MARK: Print Page-->
             <div id="print">
+                <button class="btn btn-primary no-print" id="back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+
                 <h5 class="center">Browns Kar Mart Purchasing</h5>
 
                 <p class="center">
