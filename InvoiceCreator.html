@@ -122,7 +122,9 @@
                 }
 
                 function removeItem() {
-                    $(".itemRow").last().remove()
+                    if ($('.itemRow').length > 1) {
+                        $(".itemRow").last().remove()
+                    }
                 }
 
                 function getFormattedDate(date) {
