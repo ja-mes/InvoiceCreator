@@ -81,6 +81,12 @@
                         }
                     });
 
+                    if ($(".itemDes").length < 1) {
+                        var newRow = row.clone().appendTo($("#itemPrint"));
+                        newRow.find(".des").text("");
+                        newRow.find('.price').text("$0.00");
+                    }
+
                     var paddedTotal = numberWithCommas(total.toFixed(2));
                     if (total != total) {
                         paddedTotal = "0.00"
