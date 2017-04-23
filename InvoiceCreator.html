@@ -64,17 +64,22 @@
                             newRow.find('.des').text(des);
                             newRow.find('.price').text(price);
 
-                            total += parseFloat(price);
+                            var priceNum = parseFloat(price);
+
+                            if(priceNum == priceNum) {
+                                total += priceNum;
+                            }
                         }
                     });
 
                     var paddedTotal = total.toFixed(2);
+                    if (total != total) {
+                        paddedTotal = "0.00"
+                    }
                     $("#total").text(`$${paddedTotal}`);
 
                     main.hide();
                     print.show();
-
-                    return false;
                 });
 
                 $("#addItem").click(function(e) {
