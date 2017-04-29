@@ -56,11 +56,14 @@
                     var year = $("#year").val();
                     var make = $("#make").val();
                     var model = $("#model").val();
+                    var technician = $("#techName").val();
 
                     $("#dateDes").text(getFormattedDate(new Date()));
                     $("#vehicleDes").text(`${year} ${make} ${model}`);
                     $("#stockDes").text(stock);
                     $("#vinDes").text(vin);
+                    $("#techDes").text(technician);
+                    
 
                     var row = $(".itemDes").first();
                     $("#itemPrint").empty();
@@ -266,7 +269,7 @@
                     <p id="vehicleDes">2014 Chevrolet Equinox</p>
                     <p><b>Stock #:</b> <span id="stockDes">823</span></b></p>
                     <p><b>VIN #:</b> <span id="vinDes">2342342kk234ju3</span></b></p>
-                    <p><b>Technician:</b> Joe blah</p>
+                    <p><b>Technician:</b> <span id="techDes">Joe blah</span></p>
                 </div>
             </div>
 
